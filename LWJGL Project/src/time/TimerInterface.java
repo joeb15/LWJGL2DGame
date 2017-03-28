@@ -1,5 +1,5 @@
 package time;
 
 public interface TimerInterface {
-	public void tick();
+	public void tick(float f);
 }

@@ -8,11 +8,10 @@ public class DefaultShader extends Shader {
 	public UniformMat4 projection = new UniformMat4("projection");
 	public UniformVec2 pos = new UniformVec2("pos");
 	public UniformVec2 scale = new UniformVec2("scale");
-	public UniformFloat depth = new UniformFloat("depth");
 	
 	public DefaultShader() {
 		super("./shaders/default.vs","./shaders/default.fs");	
-		addUniforms(tex, projection, pos, scale, depth);
+		addUniforms(tex, projection, pos, scale);
 		tex.loadInt(0);
 	}
 	

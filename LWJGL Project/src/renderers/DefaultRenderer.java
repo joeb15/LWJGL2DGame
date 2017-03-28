@@ -1,5 +1,7 @@
 package renderers;
 
+import static org.lwjgl.opengl.GL11.*;
+
 import java.util.List;
 
 import core.Camera;
@@ -20,17 +22,21 @@ public class DefaultRenderer {
 		model = new Model(vertices, texCoords, indices);
 		
 		shader = new DefaultShader();
+
+		glEnable(GL_TEXTURE_2D);
+		
 	}
 	
 	public void render(List<Entity> entities, Camera cam){
+		glClear(GL_COLOR_BUFFER_BIT);
+		
 		shader.bind();
 		shader.projection.loadMat4(cam.getProjection());
-		float depth=0;
+		
 		model.bind();
 		for(Entity e:entities){
 			shader.pos.loadVec2(e.getPos());
 			shader.scale.loadVec2(e.getSize());
-			shader.depth.loadFloat(depth++);
 			e.getTexture().bind(0);
 			model.render();
 		}

@@ -10,4 +10,5 @@
 <fullyQualifiedTypeName name="time.TimerInterface"/>
 <fullyQualifiedTypeName name="time.Time"/>
 <fullyQualifiedTypeName name="time.Timer"/>
+<fullyQualifiedTypeName name="textures.Textures"/>
 </qualifiedTypeNameHistroy>

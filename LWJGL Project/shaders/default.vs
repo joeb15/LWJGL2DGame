@@ -19,10 +19,8 @@ void main(){
 	worldCoords.x = worldCoords.x * scale.x;
 	worldCoords.x = worldCoords.x + pos.x;
 	
-	worldCoords.y = worldCoords.y + pos.y;
 	worldCoords.y = worldCoords.y * scale.y;
-	
-	worldCoords.z = depth;
+	worldCoords.y = worldCoords.y + pos.y;
 	
 	gl_Position = projection * vec4(worldCoords, 1);
 }

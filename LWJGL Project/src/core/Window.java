@@ -11,6 +11,7 @@ public class Window {
 	private int width, height;
 	private String title;
 	private boolean fullscreen;
+	private Camera cam;
 	
 	public Window(String title){
 		fullscreen = true;
@@ -38,6 +39,8 @@ public class Window {
 			this.width = vm.width();
 			this.height = vm.height();
 		}
+		
+		cam = new Camera(width, height);
 		
 		if(fullscreen){
 			window = glfwCreateWindow(width, height, title, glfwGetPrimaryMonitor(), 0);
@@ -91,6 +94,10 @@ public class Window {
 
 	public void swapBuffers() {
 		glfwSwapBuffers(window);
+	}
+	
+	public Camera getCamera(){
+		return cam;
 	}
 	
 }

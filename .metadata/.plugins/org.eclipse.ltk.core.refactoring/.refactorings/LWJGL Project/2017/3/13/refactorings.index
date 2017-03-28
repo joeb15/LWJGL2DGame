@@ -2,3 +2,6 @@
 1490679041266	Rename type 'DeafaultRenderer'
 1490682437896	Move compilation unit
 1490686561525	Rename local variable 'dist'
+1490716975109	Rename local variable 'f'
+1490720959243	Move compilation units
+1490721018532	Rename local variable 'texture'

@@ -11,17 +11,15 @@ public class Timer {
 	private boolean enabled=true;
 	private int numTimes;
 	
-	public Timer(TimerInterface ti, double time){
+	protected Timer(TimerInterface ti, double time){
 		this(ti,time,-1);
 	}	
 	
-	public Timer(TimerInterface ti, double time, int numTimes){
+	protected Timer(TimerInterface ti, double time, int numTimes){
 		this.ti=ti;
 		this.desiredTime=time;
 		this.numTimes=numTimes;
 		id = TIMER_COUNTER++;
-		
-		Time.addTimer(this);
 	}
 	
 	public void setEnabled(boolean enabled){
@@ -33,7 +31,7 @@ public class Timer {
 		if(time>=desiredTime){
 			time-=desiredTime;
 			if(enabled){
-				ti.tick();
+				ti.tick((float)desiredTime);
 				if(numTimes!=-1 && numTimes>0)
 					numTimes--;
 				if(numTimes==0)
