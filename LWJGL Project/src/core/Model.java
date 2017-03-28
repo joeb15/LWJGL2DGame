@@ -33,7 +33,7 @@ public class Model {
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	}
 	
-	public void render(){
+	public void bind(){
 		glEnableVertexAttribArray(0);
 		glEnableVertexAttribArray(1);
 
@@ -45,15 +45,18 @@ public class Model {
 		
 
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indID);
-		
-		glDrawElements(GL_TRIANGLES, drawCount, GL_UNSIGNED_INT, 0);
-		
+	}
+	
+	public void render(){		
+		glDrawElements(GL_TRIANGLES, drawCount, GL_UNSIGNED_INT, 0);		
+	}
+	
+	public void unbind(){
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 		glDisableVertexAttribArray(0);
 		glDisableVertexAttribArray(1);
-		
 	}
 	
 	private FloatBuffer createBuffer(float[] data){

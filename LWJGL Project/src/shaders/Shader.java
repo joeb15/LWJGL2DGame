@@ -61,6 +61,10 @@ public abstract class Shader {
 		glUseProgram(program);
 	}
 	
+	public void unbind(){
+		glUseProgram(0);
+	}
+	
 	private String readFile(String fileName){
 		try {
 			StringBuilder sb = new StringBuilder();

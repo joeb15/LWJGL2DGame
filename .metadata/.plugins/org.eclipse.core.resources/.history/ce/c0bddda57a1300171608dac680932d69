@@ -1,0 +1,13 @@
+package renderers;
+
+import shaders.DefaultShader;
+
+public class DefaultRenderer {
+
+	private DefaultShader shader;
+	
+	public DefaultRenderer(){
+		shader = new DefaultShader();
+	}
+	
+}

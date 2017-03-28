@@ -1,0 +1,19 @@
+package time;
+
+public class Timer {	
+	
+	private double time=0;
+	private double desiredTime=0;
+	
+	public Timer(TimerInterface ti, double time){
+		
+	}
+	
+	public default void update(double t){
+		time+=t;
+		if(time>=desiredTime){
+			time-=desiredTime;
+			tick();
+		}
+	}
+}

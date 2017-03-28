@@ -1,0 +1,7 @@
+package time;
+
+public interface Timer {	
+	public double time;
+	public double desiredTime;
+	public void tick();
+}

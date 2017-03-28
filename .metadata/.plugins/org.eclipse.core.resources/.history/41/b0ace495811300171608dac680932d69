@@ -1,0 +1,27 @@
+package time;
+
+public class Timer {	
+	
+	private static int TIMER_COUNTER=0;
+	
+	private double time=0;
+	private double desiredTime=0;
+	private TimerInterface ti;
+	private int id;
+	
+	public Timer(TimerInterface ti, double time){
+		this.ti=ti;
+		this.desiredTime=time;
+		id = TIMER_COUNTER++;
+		
+		Time.addTimer(this);
+	}
+	
+	public default void update(double t){
+		time+=t;
+		if(time>=desiredTime){
+			time-=desiredTime;
+			ti.tick();
+		}
+	}
+}

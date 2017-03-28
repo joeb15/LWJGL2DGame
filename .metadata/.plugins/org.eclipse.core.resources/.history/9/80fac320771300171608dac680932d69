@@ -1,0 +1,22 @@
+package shaders;
+
+import org.lwjgl.opengl.GL20;
+
+public class UniformVec2 extends Uniform {
+
+	private float currentValue;
+	private boolean used = false;
+	
+	public UniformVec2(String name) {
+		super(name);
+	}
+	
+	public void loadVec2(Vector2f value){
+		if(!used || currentValue!=value){
+			GL20.glUniform1f(getLocation(), value);
+			used=true;
+			currentValue=value;
+		}
+	}
+
+}

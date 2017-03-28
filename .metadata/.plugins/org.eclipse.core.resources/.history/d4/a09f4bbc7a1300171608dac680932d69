@@ -1,0 +1,21 @@
+package renderers;
+
+import java.util.List;
+
+import entities.Entity;
+import shaders.DefaultShader;
+
+public class DefaultRenderer {
+
+	private DefaultShader shader;
+	
+	public DefaultRenderer(){
+		shader = new DefaultShader();
+	}
+	
+	public void render(List<Entity> entities, Camera cam){
+		shader.bind();
+		cam.getProjection()
+	}
+	
+}

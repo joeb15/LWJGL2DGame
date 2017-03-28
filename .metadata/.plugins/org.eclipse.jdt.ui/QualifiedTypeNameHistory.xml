@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="shaders.UniformVec2"/>
+<fullyQualifiedTypeName name="renderers.DefaultRenderer"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="entities.Entity"/>
+<fullyQualifiedTypeName name="org.joml.Vector2f"/>
+<fullyQualifiedTypeName name="org.joml.Vector3f"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="time.TimerInterface"/>
+<fullyQualifiedTypeName name="time.Time"/>
+<fullyQualifiedTypeName name="time.Timer"/>
+</qualifiedTypeNameHistroy>

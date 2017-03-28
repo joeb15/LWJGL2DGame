@@ -1,0 +1,16 @@
+package core;
+
+public class Time {
+
+	public static long time=0;
+	private static double delta=0;
+	public static int ticks=0;
+	public static int frames=0;
+	
+	public static void update(){
+		if(time==0)
+			time = System.nanoTime();
+		delta =
+	}
+	
+}

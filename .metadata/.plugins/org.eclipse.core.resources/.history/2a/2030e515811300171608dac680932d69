@@ -1,0 +1,31 @@
+package time;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+public class Time {
+
+	private static long time=0;
+	private static double delta=0;
+	private static double totalGameTime=0;
+	
+	private static List<Timer> timers = new ArrayList<Timer>();
+	
+	public static void addTimer(Timer t){
+		timers.add(t);
+	}
+	
+	public static void update(){
+		if(time==0)
+			time = System.nanoTime();
+		delta = (System.nanoTime()-time)/1E9;
+		totalGameTime+=delta;
+		secondCounter+=delta;
+	}
+	
+	public static double getDelta(){
+		return delta;
+	}
+	
+}

@@ -1,0 +1,6 @@
+package time;
+
+public interface Timer {	
+	public void tick();
+	
+}
