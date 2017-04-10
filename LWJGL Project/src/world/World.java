@@ -1,9 +1,6 @@
 package world;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 
 /**
@@ -49,8 +46,13 @@ public class World {
         World world = null;
 
         try {
+            File file = new File("./saves/"+worldName);
+            //TODO: handle missing/corrupt worlds
+            if(!file.exists()) {
+                return WorldGenerator.generateWorld();
+            }
             String line;
-            BufferedReader br = new BufferedReader(new FileReader("./saves/"+worldName));
+            BufferedReader br = new BufferedReader(new FileReader(file));
             line = br.readLine();
             Long seed = Long.parseLong(line);
             world = new World(seed);

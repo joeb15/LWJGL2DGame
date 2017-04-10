@@ -3,6 +3,7 @@ package renderers;
 import core.Camera;
 import core.Model;
 import org.joml.Vector2f;
+import org.joml.Vector4f;
 import shaders.DefaultShader;
 import textures.Texture;
 import world.Chunk;
@@ -34,6 +35,7 @@ public class DefaultRenderer {
 	}
 
 	private HashMap<Texture, ArrayList<Vector2f>> tiles;
+	private Vector4f screenBounds;
 
 	public void render(World world, Camera cam){
 		glClear(GL_COLOR_BUFFER_BIT);
@@ -42,7 +44,7 @@ public class DefaultRenderer {
 
 		shader.bind();
 		shader.projection.loadMat4(cam.getProjection());
-
+		screenBounds = cam.getViewableArea();
 		model.bind();
 
 		HashMap<Integer, Chunk> chunks = world.getChunks();
@@ -66,18 +68,15 @@ public class DefaultRenderer {
 				model.render();
 			}
 		}
-
-//		for(Entity e:entities){
-//			shader.pos.loadVec2(e.getPos());
-//			shader.scale.loadVec2(e.getSize());
-//			e.getTexture().bind(0);
-//			model.render();
-//		}
 		model.unbind();
 		shader.unbind();
 	}
 
 	private void processTile(float xPos, float yPos, Texture t) {
+		if(		xPos+Tile.TILE_SIZE/2<screenBounds.x || xPos-Tile.TILE_SIZE/2>screenBounds.z ||
+				yPos+Tile.TILE_SIZE/2<screenBounds.w || yPos-Tile.TILE_SIZE/2>screenBounds.y){
+			return;//tile is out of frame
+		}
 		if(!tiles.containsKey(t)){
 			tiles.put(t, new ArrayList<Vector2f>());
 		}
