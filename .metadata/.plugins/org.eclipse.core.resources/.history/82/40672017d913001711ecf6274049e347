@@ -1,7 +1,0 @@
-package core;
-
-public class Textures {
-
-	private static HashMap<String, Texture> textures = new HashMap<String, Texture>();
-	
-}

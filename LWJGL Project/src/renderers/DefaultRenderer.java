@@ -1,13 +1,11 @@
 package renderers;
 
-import static org.lwjgl.opengl.GL11.*;
-
-import java.util.List;
-
 import core.Camera;
 import core.Model;
-import entities.Entity;
 import shaders.DefaultShader;
+import world.World;
+
+import static org.lwjgl.opengl.GL11.*;
 
 public class DefaultRenderer {
 
@@ -27,19 +25,20 @@ public class DefaultRenderer {
 		
 	}
 	
-	public void render(List<Entity> entities, Camera cam){
+	public void render(World world, Camera cam){
 		glClear(GL_COLOR_BUFFER_BIT);
-		
+
 		shader.bind();
 		shader.projection.loadMat4(cam.getProjection());
-		
+
 		model.bind();
-		for(Entity e:entities){
-			shader.pos.loadVec2(e.getPos());
-			shader.scale.loadVec2(e.getSize());
-			e.getTexture().bind(0);
-			model.render();
-		}
+
+//		for(Entity e:entities){
+//			shader.pos.loadVec2(e.getPos());
+//			shader.scale.loadVec2(e.getSize());
+//			e.getTexture().bind(0);
+//			model.render();
+//		}
 		model.unbind();
 		shader.unbind();
 	}

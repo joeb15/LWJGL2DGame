@@ -1,15 +1,17 @@
 package core;
-import static org.lwjgl.glfw.GLFW.*;
+
+import entities.Entity;
+import org.joml.Vector2f;
+import org.joml.Vector3f;
+import renderers.DefaultRenderer;
+import time.Time;
+import world.World;
+import world.WorldGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.joml.Vector2f;
-import org.joml.Vector3f;
-
-import entities.Entity;
-import renderers.DefaultRenderer;
-import time.Time;
+import static org.lwjgl.glfw.GLFW.*;
 
 public class Main {
 
@@ -27,16 +29,18 @@ public class Main {
 		window = new Window(WIDTH, HEIGHT, TITLE);
 		
 		DefaultRenderer renderer = new DefaultRenderer();
-		
+
 		List<Entity> entities = new ArrayList<Entity>();
-		
-		entities.add(new Entity(new Vector2f(0, 0), new Vector2f(256, 256), "./res/img.png"));	
-		
-		Time.addTimer((float f)->{
+
+		entities.add(new Entity(new Vector2f(0, 0), new Vector2f(256, 256), "./res/img.png"));
+
+		World world = WorldGenerator.generateWorld();
+
+		Time.addTimer((f)->{
 			tick(f);
 		}, 1/60D);
 		
-		Time.addTimer((float f)->{
+		Time.addTimer((f)->{
 			System.out.println("TPS:"+tps+", FPS:"+fps);
 			tps=0;
 			fps=0;
@@ -46,7 +50,7 @@ public class Main {
 			Time.update();
 			
 			fps++;
-			renderer.render(entities, window.getCamera());
+			renderer.render(world, window.getCamera());
 			
 			window.swapBuffers();
 		}

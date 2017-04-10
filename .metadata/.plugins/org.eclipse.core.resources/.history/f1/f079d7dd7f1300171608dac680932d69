@@ -1,9 +1,0 @@
-package time;
-
-public interface Timer {
-
-	public tick(){
-		
-	}
-	
-}
