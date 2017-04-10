@@ -2,6 +2,7 @@ package world;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -10,51 +11,86 @@ import java.util.HashMap;
  */
 public class World {
 
-    private HashMap<Integer, Chunk> chunks = new HashMap<Integer, Chunk>();
+    public HashMap<Integer, Chunk> getChunks() {
+        return chunks;
+    }
 
-    protected World(){};
+    private HashMap<Integer, Chunk> chunks;
+
+
+    protected final long seed;
+
+    protected World(long seed){
+        this.seed=seed;
+        chunks = new HashMap<Integer, Chunk>();
+    };
+
+
 
     public void save(String worldName){
         StringBuffer worldSave = new StringBuffer();
+        worldSave.append(seed+"\n");
         for(Integer i:chunks.keySet()){
             Chunk c = chunks.get(i);
             worldSave.append(i+":"+c.getRange()+"\n");
-            worldSave.append(c.getSaveString());
+            worldSave.append(c.getSaveString()+"\n");
+        }
+        try {
+            FileWriter fw = new FileWriter("./saves/"+worldName);
+            fw.write(worldSave.toString());
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     public static World load(String worldName){
-        World world = new World();
         StringBuilder worldSave = new StringBuilder();
+        World world = null;
+
         try {
             String line;
-            BufferedReader br = new BufferedReader(new FileReader(worldName));
+            BufferedReader br = new BufferedReader(new FileReader("./saves/"+worldName));
+            line = br.readLine();
+            Long seed = Long.parseLong(line);
+            world = new World(seed);
             while((line=br.readLine())!=null){
                 worldSave.append(line+'\n');
             }
             br.close();
         } catch (IOException e) {
             e.printStackTrace();
+            System.err.println("CORRUPTED WORLD");
+            System.exit(1);
         }
+
         String worldText = worldSave.toString();
         String[] lines = worldText.split("\n");
+
         assert(lines.length%2==0);
-        for(int i=0;i<lines.length;i+=2){
+
+        for(int i=0;i<lines.length-1;i+=2){
             String info = lines[i];
             String chunkData = lines[i+1];
             String[] rawInfo = info.split(":");
-            int chunkX = Integer.getInteger(rawInfo[0]);
-            int lower = Integer.getInteger(rawInfo[1]);
-            int upper = Integer.getInteger(rawInfo[2]);
+            int chunkX = Integer.parseInt(rawInfo[0]);
+            int lower = Integer.parseInt(rawInfo[1]);
+            int upper = Integer.parseInt(rawInfo[2]);
             String[] chunkRaw = chunkData.split(" ");
             int pointer = lower;
             Chunk c = new Chunk();
             for(int j=0;j<chunkRaw.length;j++){
-                c.add(pointer++, Integer.getInteger(chunkRaw[j]));
+                c.add(pointer++, Integer.parseInt(chunkRaw[j]));
             }
+            assert(pointer-1==upper);
+            world.addChunk(chunkX, c);
         }
-        System.err.println("CORRUPTED WORLD");
-        return null;
+
+        return world;
+    }
+
+    protected void addChunk(int i, Chunk c) {
+        chunks.put(i, c);
     }
 
 }

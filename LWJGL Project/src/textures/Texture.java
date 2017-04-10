@@ -1,15 +1,16 @@
 package textures;
-import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL13.*;
 
+import org.lwjgl.BufferUtils;
+
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
-import javax.imageio.ImageIO;
-
-import org.lwjgl.BufferUtils;
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
+import static org.lwjgl.opengl.GL13.glActiveTexture;
 
 public class Texture {
 
@@ -18,6 +19,7 @@ public class Texture {
 	protected Texture(String fileName){
 		BufferedImage bi;
 		try{
+			System.out.println(fileName);
 			bi = ImageIO.read(new File(fileName));
 			width = bi.getWidth();
 			height = bi.getHeight();

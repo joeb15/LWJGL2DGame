@@ -6,7 +6,6 @@ import org.joml.Vector3f;
 import renderers.DefaultRenderer;
 import time.Time;
 import world.World;
-import world.WorldGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,23 +17,24 @@ public class Main {
 	public static final int WIDTH = 640;
 	public static final int HEIGHT = 480;
 	public static final String TITLE = "Window";
-	
+
 	private Window window;
-	
+	private World world;
+
 	public static void main(String[] args){
 		new Main();
 	}
 	
 	public Main(){
 		window = new Window(WIDTH, HEIGHT, TITLE);
-		
 		DefaultRenderer renderer = new DefaultRenderer();
 
 		List<Entity> entities = new ArrayList<Entity>();
 
 		entities.add(new Entity(new Vector2f(0, 0), new Vector2f(256, 256), "./res/img.png"));
 
-		World world = WorldGenerator.generateWorld();
+		world = World.load("world1.ce");
+
 
 		Time.addTimer((f)->{
 			tick(f);
@@ -75,6 +75,7 @@ public class Main {
 	}
 	
 	private void cleanUp(){
+		world.save("world1.ce");
 		glfwTerminate();
 	}
 	
