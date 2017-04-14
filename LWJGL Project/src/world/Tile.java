@@ -13,8 +13,8 @@ public class Tile {
     public static final Tile TestTile = new Tile(0, "./res/img.png");
     public static final Tile TestTile2 = new Tile(1, "./res/sun.png");
 
-    private byte id;
-    private String texture;
+    public final byte id;
+    private final String texture;
 
     public Tile(int id, String texture){
         this.id=(byte)id;
@@ -23,10 +23,6 @@ public class Tile {
             System.err.println("ID "+id+" is already registered!");
         }
         tiles[id] = this;
-    }
-
-    public byte getId(){
-        return id;
     }
 
     public Texture getTexture() {

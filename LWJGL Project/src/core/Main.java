@@ -14,9 +14,9 @@ import static org.lwjgl.glfw.GLFW.*;
 
 public class Main {
 
-	public static final int WIDTH = 640;
-	public static final int HEIGHT = 480;
-	public static final String TITLE = "Window";
+	public static final int WIDTH = 1280;
+	public static final int HEIGHT = 720;
+	public static final String TITLE = "Cracked Earth";
 
 	private Window window;
 	private World world;
@@ -75,7 +75,7 @@ public class Main {
 	}
 	
 	private void cleanUp(){
-		world.save("world1.ce");
+//		world.save("world1.ce");
 		glfwTerminate();
 	}
 	

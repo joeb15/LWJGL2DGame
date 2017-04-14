@@ -24,10 +24,10 @@ public class WorldGenerator {
     public static Chunk generateChunk(long seed, int xPos) {
         Chunk c = new Chunk();
         for(int height=c.getLower();height<=c.getUpper();height++){
-            if(xPos*xPos+height*height>25)
-                c.addTile(height, (int) ((seed+height)%2));
+            if(Math.abs(xPos)-3<Math.log(height) && height>=0)
+                c.addTile(height, Tile.TestTile2.id);
             else
-                c.addTile(height, (int) (0));
+                c.addTile(height, Tile.TestTile.id);
         }
         return c;
     }
