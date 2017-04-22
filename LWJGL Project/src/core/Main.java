@@ -4,9 +4,7 @@ import entities.Entity;
 import guis.Gui;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
-import renderers.EntityRenderer;
-import renderers.GuiRenderer;
-import renderers.WorldRenderer;
+import renderers.MasterRenderer;
 import time.Time;
 import world.World;
 
@@ -36,9 +34,7 @@ public class Main {
 
 		window = new Window(WIDTH, HEIGHT, TITLE);
 
-        GuiRenderer guiRenderer = new GuiRenderer();
-		WorldRenderer worldRenderer = new WorldRenderer();
-		EntityRenderer entityRenderer = new EntityRenderer();
+		MasterRenderer renderer = new MasterRenderer();
 
         entities = new ArrayList<Entity>();
         guis = new ArrayList<Gui>();
@@ -62,12 +58,9 @@ public class Main {
 		while(!window.shouldClose()){
 			glClear(GL_COLOR_BUFFER_BIT);
 			Time.update();
-			
 			fps++;
 
-			worldRenderer.render(world, window.getCamera());
-            entityRenderer.render(entities, window.getCamera());
-            guiRenderer.render(guis);
+			renderer.render(world, entities, guis, window.getCamera());
 
 			window.swapBuffers();
 		}
