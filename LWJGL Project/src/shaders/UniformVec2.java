@@ -13,10 +13,10 @@ public class UniformVec2 extends Uniform {
 	}
 	
 	public void loadVec2(Vector2f value){
-		if(!used || currentValue!=value){
+		if(!used || !currentValue.equals(value)){
 			GL20.glUniform2f(getLocation(), value.x, value.y);
 			used=true;
-			currentValue=value;
+            currentValue=new Vector2f(value);
 		}
 	}
 

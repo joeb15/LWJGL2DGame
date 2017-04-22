@@ -4,7 +4,7 @@ import core.Camera;
 import core.Model;
 import org.joml.Vector2f;
 import org.joml.Vector4f;
-import shaders.DefaultShader;
+import shaders.WorldShader;
 import textures.Texture;
 import world.Chunk;
 import world.Tile;
@@ -13,21 +13,23 @@ import world.World;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
+import static org.lwjgl.opengl.GL11.glEnable;
 
-public class DefaultRenderer {
+public class WorldRenderer {
 
-	private DefaultShader shader;
+	private WorldShader shader;
+
 	private Model model;
 	
-	public DefaultRenderer(){
+	public WorldRenderer(){
 		float[] vertices = new float[]{-.5f,.5f,0,.5f,.5f,0,.5f,-.5f,0,-.5f,-.5f,0};
 		float[] texCoords = new float[]{0,0,1,0,1,1,0,1};
 		int[] indices = new int[]{0,1,2,2,3,0};
 
 		model = new Model(vertices, texCoords, indices);
 		
-		shader = new DefaultShader();
+		shader = new WorldShader();
 
 		glEnable(GL_TEXTURE_2D);
 
@@ -38,8 +40,6 @@ public class DefaultRenderer {
 	private Vector4f screenBounds;
 
 	public void render(World world, Camera cam){
-		glClear(GL_COLOR_BUFFER_BIT);
-
 		tiles.clear();
 
 		shader.bind();

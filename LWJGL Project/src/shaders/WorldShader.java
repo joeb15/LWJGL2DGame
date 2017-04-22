@@ -1,16 +1,16 @@
 package shaders;
 
-import static org.lwjgl.opengl.GL20.*;
+import static org.lwjgl.opengl.GL20.glBindAttribLocation;
 
-public class DefaultShader extends Shader {
+public class WorldShader extends Shader {
 
 	public UniformInt tex = new UniformInt("tex");
 	public UniformMat4 projection = new UniformMat4("projection");
 	public UniformVec2 pos = new UniformVec2("pos");
 	public UniformVec2 scale = new UniformVec2("scale");
 	
-	public DefaultShader() {
-		super("./shaders/default.vs","./shaders/default.fs");	
+	public WorldShader() {
+		super("./shaders/world.vs","./shaders/world.fs");
 		addUniforms(tex, projection, pos, scale);
 		tex.loadInt(0);
 	}

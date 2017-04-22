@@ -3,7 +3,8 @@ package core;
 import entities.Entity;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
-import renderers.DefaultRenderer;
+import renderers.EntityRenderer;
+import renderers.WorldRenderer;
 import time.Time;
 import world.World;
 
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.GL11.*;
 
 public class Main {
 
@@ -20,18 +22,21 @@ public class Main {
 
 	private Window window;
 	private World world;
+    private List<Entity> entities;
 
 	public static void main(String[] args){
 		new Main();
 	}
 	
 	public Main(){
+
 		window = new Window(WIDTH, HEIGHT, TITLE);
-		DefaultRenderer renderer = new DefaultRenderer();
+		WorldRenderer worldRenderer = new WorldRenderer();
+		EntityRenderer entityRenderer = new EntityRenderer();
 
-		List<Entity> entities = new ArrayList<Entity>();
+        entities = new ArrayList<Entity>();
 
-		entities.add(new Entity(new Vector2f(0, 0), new Vector2f(256, 256), "./res/img.png"));
+        entities.add(new Entity(new Vector2f(0, 0), new Vector2f(256, 256), "./res/img.png"));
 
 		world = World.load("world1.ce");
 
@@ -45,13 +50,19 @@ public class Main {
 			tps=0;
 			fps=0;
 		}, 1);
-		
+
+		glEnable(GL_DEPTH_TEST);
+
 		while(!window.shouldClose()){
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			Time.update();
 			
 			fps++;
-			renderer.render(world, window.getCamera());
-			
+
+            entityRenderer.render(entities, window.getCamera());
+			worldRenderer.render(world, window.getCamera());
+
+
 			window.swapBuffers();
 		}
 		cleanUp();
@@ -61,7 +72,9 @@ public class Main {
 	
 	private void tick(float delta){
 		float camDist = 200 * delta;
-		
+
+        entities.get(0).setPos((float)Math.sin(Time.getTotalGameTime())*100, (float)Math.cos(Time.getTotalGameTime())*100);
+
 		if(window.getKey(GLFW_KEY_W))
 			window.getCamera().addPos(new Vector3f(0,-camDist,0));
 		if(window.getKey(GLFW_KEY_S))
