@@ -1,5 +1,9 @@
 package shaders;
 
+import shaders.uniforms.UniformInt;
+import shaders.uniforms.UniformMat4;
+import shaders.uniforms.UniformVec2;
+
 import static org.lwjgl.opengl.GL20.glBindAttribLocation;
 
 public class WorldShader extends Shader {

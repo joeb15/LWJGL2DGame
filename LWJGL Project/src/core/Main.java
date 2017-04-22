@@ -1,9 +1,11 @@
 package core;
 
 import entities.Entity;
+import guis.Gui;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 import renderers.EntityRenderer;
+import renderers.GuiRenderer;
 import renderers.WorldRenderer;
 import time.Time;
 import world.World;
@@ -12,7 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
+import static org.lwjgl.opengl.GL11.glClear;
 
 public class Main {
 
@@ -23,6 +26,7 @@ public class Main {
 	private Window window;
 	private World world;
     private List<Entity> entities;
+    private List<Gui> guis;
 
 	public static void main(String[] args){
 		new Main();
@@ -31,12 +35,16 @@ public class Main {
 	public Main(){
 
 		window = new Window(WIDTH, HEIGHT, TITLE);
+
+        GuiRenderer guiRenderer = new GuiRenderer();
 		WorldRenderer worldRenderer = new WorldRenderer();
 		EntityRenderer entityRenderer = new EntityRenderer();
 
         entities = new ArrayList<Entity>();
+        guis = new ArrayList<Gui>();
 
         entities.add(new Entity(new Vector2f(0, 0), new Vector2f(256, 256), "./res/img.png"));
+        guis.add(new Gui("./res/sun.png", new Vector2f(0, .9375f), new Vector2f(2, .125f)));
 
 		world = World.load("world1.ce");
 
@@ -51,17 +59,15 @@ public class Main {
 			fps=0;
 		}, 1);
 
-		glEnable(GL_DEPTH_TEST);
-
 		while(!window.shouldClose()){
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			glClear(GL_COLOR_BUFFER_BIT);
 			Time.update();
 			
 			fps++;
 
-            entityRenderer.render(entities, window.getCamera());
 			worldRenderer.render(world, window.getCamera());
-
+            entityRenderer.render(entities, window.getCamera());
+            guiRenderer.render(guis);
 
 			window.swapBuffers();
 		}
@@ -83,6 +89,7 @@ public class Main {
 			window.getCamera().addPos(new Vector3f(camDist,0,0));
 		if(window.getKey(GLFW_KEY_D))
 			window.getCamera().addPos(new Vector3f(-camDist,0,0));
+
 		tps++;
 		glfwPollEvents();
 	}

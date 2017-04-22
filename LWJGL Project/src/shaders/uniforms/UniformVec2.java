@@ -1,4 +1,4 @@
-package shaders;
+package shaders.uniforms;
 
 import org.joml.Vector2f;
 import org.lwjgl.opengl.GL20;

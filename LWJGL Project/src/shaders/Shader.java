@@ -1,11 +1,13 @@
 package shaders;
 
-import static org.lwjgl.opengl.GL20.*;
+import shaders.uniforms.Uniform;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+
+import static org.lwjgl.opengl.GL20.*;
 
 public abstract class Shader {
 

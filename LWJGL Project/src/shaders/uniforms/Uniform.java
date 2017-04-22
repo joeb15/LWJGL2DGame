@@ -1,4 +1,4 @@
-package shaders;
+package shaders.uniforms;
 
 import org.lwjgl.opengl.GL20;
 
@@ -10,7 +10,7 @@ public abstract class Uniform {
 		this.name=name;
 	}
 	
-	protected void storeUniformLocation(int program){
+	public void storeUniformLocation(int program){
 		location = GL20.glGetUniformLocation(program, name);
 		if(location == -1){
 			System.err.println("Uniform: "+name+" is not found!");
