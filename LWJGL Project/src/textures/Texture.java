@@ -16,12 +16,15 @@ import static org.lwjgl.opengl.GL30.glGenerateMipmap;
 
 public class Texture {
 
-	private int id, width, height;
-	
-	protected Texture(String fileName){
+    protected boolean isAnimation;
+    protected int id, width, height;
+
+    protected Texture(){}
+
+	public Texture(String fileName){
+	    isAnimation=false;
 		BufferedImage bi;
 		try{
-			System.out.println(fileName);
 			bi = ImageIO.read(new File(fileName));
 			width = bi.getWidth();
 			height = bi.getHeight();

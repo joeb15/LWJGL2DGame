@@ -5,6 +5,9 @@ import guis.Gui;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 import renderers.MasterRenderer;
+import textures.Animation;
+import textures.Animations;
+import textures.Texture;
 import time.Time;
 import world.World;
 
@@ -39,21 +42,14 @@ public class Main {
         entities = new ArrayList<Entity>();
         guis = new ArrayList<Gui>();
 
-        entities.add(new Entity(new Vector2f(0, 0), new Vector2f(256, 256), "./res/img.png"));
-        guis.add(new Gui("./res/sun.png", new Vector2f(0, .9375f), new Vector2f(2, .125f)));
+//        entities.add(new Entity(new Vector2f(0, 0), new Vector2f(256, 256), Animations.getAnimation("./res/img.png", 1, 1)));
+//        guis.add(new Gui("./res/sun.png", new Vector2f(0, .9375f), new Vector2f(2, .125f)));
 
 		world = World.load("world1.ce");
 
 
-		Time.addTimer((f)->{
-			tick(f);
-		}, 1/60D);
-		
-		Time.addTimer((f)->{
-			System.out.println("TPS:"+tps+", FPS:"+fps);
-			tps=0;
-			fps=0;
-		}, 1);
+		Time.addTimer((f)->{tick(f);}, 1/60D);
+		Time.addTimer((f)->{System.out.println("TPS:"+(tps+(tps=0))+", FPS:"+(fps+(fps=0)));}, 1);
 
 		while(!window.shouldClose()){
 			glClear(GL_COLOR_BUFFER_BIT);
@@ -72,7 +68,7 @@ public class Main {
 	private void tick(float delta){
 		float camDist = 200 * delta;
 
-        entities.get(0).setPos((float)Math.sin(Time.getTotalGameTime())*100, (float)Math.cos(Time.getTotalGameTime())*100);
+//        entities.get(0).setPos((float)Math.sin(Time.getTotalGameTime())*100, (float)Math.cos(Time.getTotalGameTime())*100);
 
 		if(window.getKey(GLFW_KEY_W))
 			window.getCamera().addPos(new Vector3f(0,-camDist,0));

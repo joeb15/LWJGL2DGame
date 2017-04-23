@@ -8,12 +8,18 @@ public class Entity {
 
 	private Vector2f pos, size;
 	private Texture texture;
-	
-	public Entity(Vector2f pos, Vector2f size, String textureFile){
-		this.pos=pos;
-		this.size=size;
-		this.texture=Textures.getTexture(textureFile);
-	}
+
+    public Entity(Vector2f pos, Vector2f size, String textureFile){
+        this.pos=pos;
+        this.size=size;
+        this.texture=Textures.getTexture(textureFile);
+    }
+
+    public Entity(Vector2f pos, Vector2f size, Texture texture){
+        this.pos=pos;
+        this.size=size;
+        this.texture=texture;
+    }
 	
 	public Vector2f getPos(){
 		return pos;
