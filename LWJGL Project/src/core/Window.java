@@ -1,9 +1,9 @@
 package core;
 
+import static org.lwjgl.glfw.GLFW.*;
+
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
-
-import static org.lwjgl.glfw.GLFW.*;
 
 public class Window {
 	

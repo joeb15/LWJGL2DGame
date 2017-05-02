@@ -5,18 +5,18 @@ import guis.Gui;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 import renderers.MasterRenderer;
+import textures.Animation;
 import textures.Animations;
 import textures.Texture;
-import textures.Textures;
 import time.Time;
 import world.World;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
+import static org.lwjgl.opengl.GL11.glClear;
 
 public class Main {
 
@@ -41,12 +41,9 @@ public class Main {
 
         entities = new ArrayList<Entity>();
         guis = new ArrayList<Gui>();
-        Random r = new Random();
-        Texture img = Textures.getTexture("./res/img.png");
-        entities.add(new Entity(new Vector3f(0,0,10), new Vector3f(32,32,32), img));
-//        guis.add(new Gui("./res/sun.png", new Vector2f(0, .9375f), new Vector2f(2, .125f)));
 
-        //window.getCamera().setPos(entities.get(0).getPos());
+//        entities.add(new Entity(new Vector2f(0, 0), new Vector2f(256, 256), Animations.getAnimation("./res/img.png", 1, 1)));
+//        guis.add(new Gui("./res/sun.png", new Vector2f(0, .9375f), new Vector2f(2, .125f)));
 
 		world = World.load("world1.ce");
 
@@ -54,10 +51,8 @@ public class Main {
 		Time.addTimer((f)->{tick(f);}, 1/60D);
 		Time.addTimer((f)->{System.out.println("TPS:"+(tps+(tps=0))+", FPS:"+(fps+(fps=0)));}, 1);
 
-		glEnable(GL_DEPTH_TEST);
-
 		while(!window.shouldClose()){
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			glClear(GL_COLOR_BUFFER_BIT);
 			Time.update();
 			fps++;
 
@@ -73,22 +68,18 @@ public class Main {
 	private void tick(float delta){
 		float camDist = 200 * delta;
 
-		Entity main = entities.get(0);
-		window.getCamera().addRot(new Vector3f(delta*20, 0, 0));
-//		main.setPos((float)Time.getTotalGameTime()*10, (float)Math.sin(Time.getTotalGameTime()/5f)*50);
+//        entities.get(0).setPos((float)Math.sin(Time.getTotalGameTime())*100, (float)Math.cos(Time.getTotalGameTime())*100);
 
-//		if(window.getKey(GLFW_KEY_W))
-//			main.changePos(0,camDist);
-//		if(window.getKey(GLFW_KEY_S))
-//            main.changePos(0,-camDist);
-//		if(window.getKey(GLFW_KEY_A))
-//            main.changePos(-camDist,0);
-//		if(window.getKey(GLFW_KEY_D))
-//            main.changePos(camDist,0);
+		if(window.getKey(GLFW_KEY_W))
+			window.getCamera().addPos(new Vector3f(0,-camDist,0));
+		if(window.getKey(GLFW_KEY_S))
+			window.getCamera().addPos(new Vector3f(0,camDist,0));
+		if(window.getKey(GLFW_KEY_A))
+			window.getCamera().addPos(new Vector3f(camDist,0,0));
+		if(window.getKey(GLFW_KEY_D))
+			window.getCamera().addPos(new Vector3f(-camDist,0,0));
 
 		tps++;
-        for(Entity e:entities)
-            e.tick();
 		glfwPollEvents();
 	}
 	
