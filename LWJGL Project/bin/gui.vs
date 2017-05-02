@@ -7,7 +7,6 @@ out vec2 pass_tex;
 
 uniform vec2 scale;
 uniform vec2 pos;
-uniform float depth;
 
 void main(){
 	pass_tex = textureCoords;

@@ -1,0 +1,12 @@
+TODO LIST
+
+X   GuiRenderer
+x   MasterRenderer
+x   Animation
+    x   integrate to current system
+    Sound
+    Physics Engine
+    x   Entity Collision
+        Tile-Entity Collision
+x   Camera Follows Player
+    Make new Textures
