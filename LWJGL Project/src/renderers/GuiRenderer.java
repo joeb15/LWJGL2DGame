@@ -1,7 +1,6 @@
 package renderers;
 
 import core.Model;
-import core.ModelLoader;
 import guis.Gui;
 import shaders.GuiShader;
 
@@ -17,8 +16,11 @@ public class GuiRenderer {
 	private Model model;
 
 	public GuiRenderer(){
+		float[] vertices = new float[]{-.5f,.5f,0,.5f,.5f,0,.5f,-.5f,0,-.5f,-.5f,0};
+		float[] texCoords = new float[]{0,0,1,0,1,1,0,1};
+		int[] indices = new int[]{0,1,2,2,3,0};
 
-		model = ModelLoader.load("./res/plane.obj");
+		model = new Model(vertices, texCoords, indices);
 		
 		shader = new GuiShader();
 

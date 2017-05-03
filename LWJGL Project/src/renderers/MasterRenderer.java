@@ -23,8 +23,8 @@ public class MasterRenderer {
     }
 
     public void render(World world, List<Entity> entities, List<Gui> guis, Camera camera) {
-//        worldRenderer.render(world, camera);
+        worldRenderer.render(world, camera);
         entityRenderer.render(entities, camera);
-//        guiRenderer.render(guis);
+        guiRenderer.render(guis);
     }
 }

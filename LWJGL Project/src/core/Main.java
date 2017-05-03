@@ -3,11 +3,8 @@ package core;
 import entities.Entity;
 import guis.Gui;
 import org.joml.Vector2f;
-import org.joml.Vector3f;
 import renderers.MasterRenderer;
-import textures.Animation;
 import textures.Animations;
-import textures.Texture;
 import time.Time;
 import world.World;
 
@@ -32,7 +29,7 @@ public class Main {
 	public static void main(String[] args){
 		new Main();
 	}
-	
+
 	public Main(){
 
 		window = new Window(WIDTH, HEIGHT, TITLE);
@@ -42,8 +39,10 @@ public class Main {
         entities = new ArrayList<Entity>();
         guis = new ArrayList<Gui>();
 
-//        entities.add(new Entity(new Vector2f(0, 0), new Vector2f(256, 256), Animations.getAnimation("./res/img.png", 1, 1)));
-//        guis.add(new Gui("./res/sun.png", new Vector2f(0, .9375f), new Vector2f(2, .125f)));
+        entities.add(new Entity(new Vector2f(0, 0), new Vector2f(256, 256), Animations.getAnimation("./res/img.png", 1, 1)));
+        guis.add(new Gui("./res/sun.png", new Vector2f(0, .9375f), new Vector2f(2, .125f)));
+
+        window.getCamera().setPos(entities.get(0).getPos());
 
 		world = World.load("world1.ce");
 
@@ -62,24 +61,27 @@ public class Main {
 		}
 		cleanUp();
 	}
-	
+
 	private int tps=0, fps=0;
-	
+
 	private void tick(float delta){
 		float camDist = 200 * delta;
 
-//        entities.get(0).setPos((float)Math.sin(Time.getTotalGameTime())*100, (float)Math.cos(Time.getTotalGameTime())*100);
+		Entity main = entities.get(0);
+//		main.setVel(20, (float)Math.sin(Time.getTotalGameTime()/5f)*50);
 
 		if(window.getKey(GLFW_KEY_W))
-			window.getCamera().addPos(new Vector3f(0,-camDist,0));
+			main.changePos(0,camDist);
 		if(window.getKey(GLFW_KEY_S))
-			window.getCamera().addPos(new Vector3f(0,camDist,0));
+            main.changePos(0,-camDist);
 		if(window.getKey(GLFW_KEY_A))
-			window.getCamera().addPos(new Vector3f(camDist,0,0));
+            main.changePos(-camDist,0);
 		if(window.getKey(GLFW_KEY_D))
-			window.getCamera().addPos(new Vector3f(-camDist,0,0));
+            main.changePos(camDist,0);
 
 		tps++;
+        for(Entity e:entities)
+            e.tick(delta);
 		glfwPollEvents();
 	}
 	

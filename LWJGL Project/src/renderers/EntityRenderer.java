@@ -2,10 +2,8 @@ package renderers;
 
 import core.Camera;
 import core.Model;
-import core.ModelLoader;
 import entities.Entity;
 import org.joml.Vector2f;
-import org.joml.Vector3f;
 import org.joml.Vector4f;
 import shaders.EntityShader;
 import textures.Texture;
@@ -24,7 +22,11 @@ public class EntityRenderer {
 	private Model model;
 
 	public EntityRenderer(){
-		model = ModelLoader.load("./res/cube.obj");
+		float[] vertices = new float[]{-.5f,.5f,0,.5f,.5f,0,.5f,-.5f,0,-.5f,-.5f,0};
+		float[] texCoords = new float[]{0,0,1,0,1,1,0,1};
+		int[] indices = new int[]{0,1,2,2,3,0};
+
+		model = new Model(vertices, texCoords, indices);
 
 		shader = new EntityShader();
 
@@ -34,9 +36,11 @@ public class EntityRenderer {
 	}
 
 	private HashMap<Texture, ArrayList<Entity>> entitiesHash;
+	private Vector4f screenBounds;
 
 	public void render(List<Entity> entities, Camera cam){
 		entitiesHash.clear();
+        screenBounds = cam.getViewableArea();
 
 		for(Entity e:entities){
 			processEntity(e);
@@ -45,11 +49,12 @@ public class EntityRenderer {
 		shader.bind();
 		shader.projection.loadMat4(cam.getProjection());
 		model.bind();
-        for(Texture t:entitiesHash.keySet()){
+
+		for(Texture t:entitiesHash.keySet()){
 			t.bind(0);
 			for(Entity e:entitiesHash.get(t)) {
-				shader.scale.loadVec3(e.getSize());
-				shader.pos.loadVec3(e.getPos());
+				shader.scale.loadVec2(e.getSize());
+				shader.pos.loadVec2(e.getPos());
                 model.render();
 			}
 		}
@@ -59,15 +64,14 @@ public class EntityRenderer {
 	}
 
 	private void processEntity(Entity e){
-		Vector3f pos = e.getPos();
-		Vector3f size = e.getSize();
+		Vector2f pos = e.getPos();
+		Vector2f size = e.getSize();
 		Texture t = e.getTexture();
 
-		//TODO: optimize whether or not we need to render entity
-//		if(		pos.x+size.x/2<screenBounds.x || pos.x-size.x/2>screenBounds.z ||
-//				pos.y+size.y/2<screenBounds.w || pos.y-size.y/2>screenBounds.y){
-//			return;
-//		}
+		if(		pos.x+size.x/2<screenBounds.x || pos.x-size.x/2>screenBounds.z ||
+				pos.y+size.y/2<screenBounds.w || pos.y-size.y/2>screenBounds.y){
+			return;
+		}
 		if(!entitiesHash.containsKey(t)){
 			entitiesHash.put(t, new ArrayList<Entity>());
 		}
