@@ -1,9 +1,10 @@
 package core;
 
-import static org.lwjgl.glfw.GLFW.*;
-
+import org.joml.Vector2f;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
+
+import static org.lwjgl.glfw.GLFW.*;
 
 public class Window {
 	
@@ -12,13 +13,13 @@ public class Window {
 	private String title;
 	private boolean fullscreen;
 	private Camera cam;
-	
+
 	public Window(String title){
 		fullscreen = true;
 		this.title=title;
 		createWindow();
 	}
-	
+
 	public Window(int w, int h, String title){
 		this.width=w;
 		this.height=h;
@@ -26,22 +27,22 @@ public class Window {
 		fullscreen=false;
 		createWindow();
 	}
-	
+
 	public void createWindow(){
 		if(glfwInit()==false){
 			System.err.println("GLFW Init failed");
 			System.exit(1);
 		}
-		
+
 		GLFWVidMode vm = glfwGetVideoMode(glfwGetPrimaryMonitor());
-		
+
 		if(fullscreen){
 			this.width = vm.width();
 			this.height = vm.height();
 		}
-		
+
 		cam = new Camera(width, height);
-		
+
 		if(fullscreen){
 			window = glfwCreateWindow(width, height, title, glfwGetPrimaryMonitor(), 0);
 		}else{
@@ -49,37 +50,37 @@ public class Window {
 		}
 		if(window == 0)
 			throw new IllegalStateException("Failed to create window!");
-		
-		
-		
+
+
+
 		glfwSetWindowPos(window, vm.width()/2-width/2, vm.height()/2-height/2);
-		
+
 		glfwShowWindow(window);
-		
+
 		glfwMakeContextCurrent(window);
-		
+
 		GL.createCapabilities();
 	}
-	
+
 	public void setFullscreen(boolean fs){
 		this.fullscreen=fs;
 		createWindow();
 	}
-	
+
 	public boolean isFullscreen(){
 		return fullscreen;
 	}
-	
+
 	public void setSize(int w, int h){
 		width=w;
 		height=h;
 		createWindow();
 	}
-	
+
 	public int getWidth(){
 		return width;
 	}
-	
+
 	public int getHeight(){
 		return height;
 	}
@@ -95,9 +96,36 @@ public class Window {
 	public void swapBuffers() {
 		glfwSwapBuffers(window);
 	}
-	
+
 	public Camera getCamera(){
 		return cam;
 	}
-	
+
+	public void hideWindow(){
+	    glfwHideWindow(window);
+    }
+
+    public void showWindow(){
+	    glfwShowWindow(window);
+    }
+
+    public void centerCursor(){
+        setCursorPos(width/2, height/2);
+    }
+
+	public Vector2f getCursorPos(){
+        double[] x = new double[1];
+        double[] y = new double[1];
+	    glfwGetCursorPos(window, x, y);
+	    return new Vector2f((float)x[0], (float)y[0]);
+    }
+
+    public void setCursorPos(float x, float y){
+	    glfwSetCursorPos(window, x, y);
+    }
+
+    public void setCursorPos(Vector2f pos){
+        glfwSetCursorPos(window, pos.x, pos.y);
+    }
+
 }

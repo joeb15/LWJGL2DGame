@@ -2,31 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="413b2b8c-e187-4328-9b0d-5d992f199619" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/core/ModelLoader.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/core/Camera.class" afterPath="$PROJECT_DIR$/bin/core/Camera.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/core/Main.class" afterPath="$PROJECT_DIR$/bin/core/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/core/Model.class" afterPath="$PROJECT_DIR$/bin/core/Model.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/entities/Entity.class" afterPath="$PROJECT_DIR$/bin/entities/Entity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/renderers/EntityRenderer.class" afterPath="$PROJECT_DIR$/bin/renderers/EntityRenderer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/renderers/GuiRenderer.class" afterPath="$PROJECT_DIR$/bin/renderers/GuiRenderer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/renderers/MasterRenderer.class" afterPath="$PROJECT_DIR$/bin/renderers/MasterRenderer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/shaders/EntityShader.class" afterPath="$PROJECT_DIR$/bin/shaders/EntityShader.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/shaders/WorldShader.class" afterPath="$PROJECT_DIR$/bin/shaders/WorldShader.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/core/Window.class" afterPath="$PROJECT_DIR$/bin/core/Window.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/renderers/WorldRenderer.class" afterPath="$PROJECT_DIR$/bin/renderers/WorldRenderer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/world/Tile.class" afterPath="$PROJECT_DIR$/bin/world/Tile.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/shaders/entity.fs" afterPath="$PROJECT_DIR$/shaders/entity.fs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/shaders/entity.vs" afterPath="$PROJECT_DIR$/shaders/entity.vs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/shaders/world.vs" afterPath="$PROJECT_DIR$/shaders/world.vs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/core/Camera.java" afterPath="$PROJECT_DIR$/src/core/Camera.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/entity.fs" afterPath="$PROJECT_DIR$/bin/entity.fs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/entity.vs" afterPath="$PROJECT_DIR$/bin/entity.vs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/world.vs" afterPath="$PROJECT_DIR$/bin/world.vs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/core/Main.java" afterPath="$PROJECT_DIR$/src/core/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/core/Model.java" afterPath="$PROJECT_DIR$/src/core/Model.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/entities/Entity.java" afterPath="$PROJECT_DIR$/src/entities/Entity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/renderers/EntityRenderer.java" afterPath="$PROJECT_DIR$/src/renderers/EntityRenderer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/renderers/GuiRenderer.java" afterPath="$PROJECT_DIR$/src/renderers/GuiRenderer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/renderers/MasterRenderer.java" afterPath="$PROJECT_DIR$/src/renderers/MasterRenderer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/renderers/WorldRenderer.java" afterPath="$PROJECT_DIR$/src/renderers/WorldRenderer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shaders/EntityShader.java" afterPath="$PROJECT_DIR$/src/shaders/EntityShader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shaders/WorldShader.java" afterPath="$PROJECT_DIR$/src/shaders/WorldShader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/world/Tile.java" afterPath="$PROJECT_DIR$/src/world/Tile.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/core/Window.java" afterPath="$PROJECT_DIR$/src/core/Window.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,10 +27,45 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/core/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="72" column="0" lean-forward="true" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+            <state relative-caret-position="653">
+              <caret line="82" column="26" lean-forward="true" selection-start-line="82" selection-start-column="26" selection-end-line="82" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Window.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/core/Window.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="928">
+              <caret line="110" column="31" lean-forward="false" selection-start-line="110" selection-start-column="31" selection-end-line="110" selection-end-column="31" />
+              <folding>
+                <element signature="e#1380#1381#0" expanded="true" />
+                <element signature="e#1404#1405#0" expanded="true" />
+                <element signature="e#1510#1511#0" expanded="true" />
+                <element signature="e#1529#1530#0" expanded="true" />
+                <element signature="e#1555#1556#0" expanded="true" />
+                <element signature="e#1575#1576#0" expanded="true" />
+                <element signature="e#1608#1609#0" expanded="true" />
+                <element signature="e#1651#1652#0" expanded="true" />
+                <element signature="e#1686#1687#0" expanded="true" />
+                <element signature="e#1734#1735#0" expanded="true" />
+                <element signature="e#1764#1765#0" expanded="true" />
+                <element signature="e#1794#1795#0" expanded="true" />
+                <element signature="e#1823#1824#0" expanded="true" />
+                <element signature="e#1840#1841#0" expanded="true" />
+                <element signature="e#1868#1869#0" expanded="true" />
+                <element signature="e#1903#1904#0" expanded="true" />
+                <element signature="e#1934#1935#0" expanded="true" />
+                <element signature="e#1969#1970#0" expanded="true" />
+                <element signature="e#2002#2003#0" expanded="true" />
+                <element signature="e#2049#2050#0" expanded="true" />
+                <element signature="e#2299#2300#0" expanded="true" />
+                <element signature="e#2342#2343#0" expanded="true" />
+                <element signature="e#2387#2388#0" expanded="true" />
+                <element signature="e#2441#2442#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -150,6 +170,7 @@
         <option value="$PROJECT_DIR$/src/renderers/MasterRenderer.java" />
         <option value="$PROJECT_DIR$/src/entities/Entity.java" />
         <option value="$PROJECT_DIR$/src/core/Main.java" />
+        <option value="$PROJECT_DIR$/src/core/Window.java" />
       </list>
     </option>
   </component>
@@ -931,11 +952,18 @@
       <option name="project" value="LOCAL" />
       <updated>1492834066626</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Fix all of the things that were messed up by the 3d attempt">
+      <created>1493843914773</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1493843914773</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54093000" />
+    <option name="totallyTimeSpent" value="55109000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="2182" height="1402" extended-state="6" />
@@ -1027,7 +1055,8 @@
     <MESSAGE value="Add Entity Shader, Fixed Uniform Bug" />
     <MESSAGE value="Add Guis, Fix Uniform Accessibilities" />
     <MESSAGE value="Master Renderer" />
-    <option name="LAST_COMMIT_MESSAGE" value="Master Renderer" />
+    <MESSAGE value="Fix all of the things that were messed up by the 3d attempt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix all of the things that were messed up by the 3d attempt" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1235,14 +1264,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/Window.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
-          <caret line="54" column="37" lean-forward="false" selection-start-line="54" selection-start-column="37" selection-end-line="54" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/entities/Collision.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -1397,10 +1418,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/Window.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="928">
+          <caret line="110" column="31" lean-forward="false" selection-start-line="110" selection-start-column="31" selection-end-line="110" selection-end-column="31" />
+          <folding>
+            <element signature="e#1380#1381#0" expanded="true" />
+            <element signature="e#1404#1405#0" expanded="true" />
+            <element signature="e#1510#1511#0" expanded="true" />
+            <element signature="e#1529#1530#0" expanded="true" />
+            <element signature="e#1555#1556#0" expanded="true" />
+            <element signature="e#1575#1576#0" expanded="true" />
+            <element signature="e#1608#1609#0" expanded="true" />
+            <element signature="e#1651#1652#0" expanded="true" />
+            <element signature="e#1686#1687#0" expanded="true" />
+            <element signature="e#1734#1735#0" expanded="true" />
+            <element signature="e#1764#1765#0" expanded="true" />
+            <element signature="e#1794#1795#0" expanded="true" />
+            <element signature="e#1823#1824#0" expanded="true" />
+            <element signature="e#1840#1841#0" expanded="true" />
+            <element signature="e#1868#1869#0" expanded="true" />
+            <element signature="e#1903#1904#0" expanded="true" />
+            <element signature="e#1934#1935#0" expanded="true" />
+            <element signature="e#1969#1970#0" expanded="true" />
+            <element signature="e#2002#2003#0" expanded="true" />
+            <element signature="e#2049#2050#0" expanded="true" />
+            <element signature="e#2299#2300#0" expanded="true" />
+            <element signature="e#2342#2343#0" expanded="true" />
+            <element signature="e#2387#2388#0" expanded="true" />
+            <element signature="e#2441#2442#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/core/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="72" column="0" lean-forward="true" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+        <state relative-caret-position="653">
+          <caret line="82" column="26" lean-forward="true" selection-start-line="82" selection-start-column="26" selection-end-line="82" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

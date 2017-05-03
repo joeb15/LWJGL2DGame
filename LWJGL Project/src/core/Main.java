@@ -66,8 +66,7 @@ public class Main {
 
 	private void tick(float delta){
 		float camDist = 200 * delta;
-
-		Entity main = entities.get(0);
+        Entity main = entities.get(0);
 //		main.setVel(20, (float)Math.sin(Time.getTotalGameTime()/5f)*50);
 
 		if(window.getKey(GLFW_KEY_W))
