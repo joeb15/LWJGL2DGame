@@ -74,6 +74,7 @@ public class Entity {
 
     public void tick(float delta){
 	    pos.add(vel.mul(delta));
+	    setVel(0,0);
     }
 
     public void onCollide(Entity other) {

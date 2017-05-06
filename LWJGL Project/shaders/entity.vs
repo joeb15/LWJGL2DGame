@@ -9,18 +9,11 @@ uniform mat4 projection;
 
 uniform vec2 scale;
 uniform vec2 pos;
-uniform float depth;
 
 void main(){
 	pass_tex = textureCoords;
 
-	vec3 worldCoords = position;
-
-	worldCoords.x = worldCoords.x * scale.x;
-	worldCoords.x = worldCoords.x + pos.x;
-
-	worldCoords.y = worldCoords.y * scale.y;
-	worldCoords.y = worldCoords.y + pos.y;
+	vec3 worldCoords = position * scale + pos;
 
 	gl_Position = projection * vec4(worldCoords, 1);
 }

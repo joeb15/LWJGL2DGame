@@ -1,7 +1,9 @@
 package renderers;
 
 import core.Model;
+import core.Window;
 import guis.Gui;
+import org.joml.Vector2f;
 import shaders.GuiShader;
 
 import java.util.List;
@@ -27,15 +29,15 @@ public class GuiRenderer {
 		glEnable(GL_TEXTURE_2D);
 	}
 
-	public void render(List<Gui> guis){
+	public void render(List<Gui> guis, Window w){
 
 		shader.bind();
 		model.bind();
-
+		shader.screen.loadVec2(new Vector2f(w.getWidth(), w.getHeight()));
 		for(Gui g:guis){
 		    g.getTexture().bind(0);
-		    shader.scale.loadVec2(g.getSize());
 		    shader.pos.loadVec2(g.getPos());
+		    shader.scale.loadVec2(g.getSize());
 		    model.render();
         }
 

@@ -40,5 +40,8 @@ public class Camera {
 		projection.mul(pos, target);
 		return target;
 	}
-	
+
+    public Matrix4f getViewMatrix() {
+        return projection;
+    }
 }

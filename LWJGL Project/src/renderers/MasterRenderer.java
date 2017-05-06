@@ -1,6 +1,7 @@
 package renderers;
 
 import core.Camera;
+import core.Window;
 import entities.Entity;
 import guis.Gui;
 import world.World;
@@ -22,9 +23,10 @@ public class MasterRenderer {
         worldRenderer = new WorldRenderer();
     }
 
-    public void render(World world, List<Entity> entities, List<Gui> guis, Camera camera) {
+    public void render(World world, List<Entity> entities, List<Gui> guis, Window window) {
+        Camera camera = window.getCamera();
         worldRenderer.render(world, camera);
         entityRenderer.render(entities, camera);
-        guiRenderer.render(guis);
+        guiRenderer.render(guis, window);
     }
 }

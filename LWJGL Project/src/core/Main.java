@@ -12,8 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
-import static org.lwjgl.opengl.GL11.glClear;
+import static org.lwjgl.opengl.GL11.*;
 
 public class Main {
 
@@ -40,7 +39,7 @@ public class Main {
         guis = new ArrayList<Gui>();
 
         entities.add(new Entity(new Vector2f(0, 0), new Vector2f(256, 256), Animations.getAnimation("./res/img.png", 1, 1)));
-        guis.add(new Gui("./res/sun.png", new Vector2f(0, .9375f), new Vector2f(2, .125f)));
+        guis.add(new Gui("./res/sun.png", new Vector2f(0, HEIGHT-WIDTH/20), new Vector2f(WIDTH, WIDTH/20)));
 
         window.getCamera().setPos(entities.get(0).getPos());
 
@@ -50,12 +49,14 @@ public class Main {
 		Time.addTimer((f)->{tick(f);}, 1/60D);
 		Time.addTimer((f)->{System.out.println("TPS:"+(tps+(tps=0))+", FPS:"+(fps+(fps=0)));}, 1);
 
+		glEnable(GL_CULL_FACE);
+		glCullFace(GL_FRONT);
 		while(!window.shouldClose()){
 			glClear(GL_COLOR_BUFFER_BIT);
 			Time.update();
 			fps++;
 
-			renderer.render(world, entities, guis, window.getCamera());
+			renderer.render(world, entities, guis, window);
 
 			window.swapBuffers();
 		}
@@ -65,18 +66,19 @@ public class Main {
 	private int tps=0, fps=0;
 
 	private void tick(float delta){
-		float camDist = 200 * delta;
+		float speed = 200;
         Entity main = entities.get(0);
-//		main.setVel(20, (float)Math.sin(Time.getTotalGameTime()/5f)*50);
+
+		main.setVel(20, (float)Math.sin(Time.getTotalGameTime()/5f)*50);
 
 		if(window.getKey(GLFW_KEY_W))
-			main.changePos(0,camDist);
+			main.changeVel(0,speed);
 		if(window.getKey(GLFW_KEY_S))
-            main.changePos(0,-camDist);
+            main.changeVel(0,-speed);
 		if(window.getKey(GLFW_KEY_A))
-            main.changePos(-camDist,0);
+            main.changeVel(-speed,0);
 		if(window.getKey(GLFW_KEY_D))
-            main.changePos(camDist,0);
+            main.changeVel(speed,0);
 
 		tps++;
         for(Entity e:entities)
@@ -85,7 +87,7 @@ public class Main {
 	}
 	
 	private void cleanUp(){
-//		world.save("world1.ce");
+		world.save("world1.ce");
 		glfwTerminate();
 	}
 	

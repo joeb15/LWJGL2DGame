@@ -7,17 +7,13 @@ out vec2 pass_tex;
 
 uniform vec2 scale;
 uniform vec2 pos;
+uniform vec2 screen;
 
 void main(){
 	pass_tex = textureCoords;
-	
-	vec3 worldCoords = position;
-	
-	worldCoords.x = worldCoords.x * scale.x;
-	worldCoords.x = worldCoords.x + pos.x;
-	
-	worldCoords.y = worldCoords.y * scale.y;
-	worldCoords.y = worldCoords.y + pos.y;
-	
-	gl_Position = vec4(worldCoords, 1);
+
+	vec2 worldCoords = position.xy + vec2(.5);
+    worldCoords = worldCoords * scale + pos - screen/2;
+    worldCoords = worldCoords*2/screen;
+	gl_Position = vec4(worldCoords, 0, 1);
 }
