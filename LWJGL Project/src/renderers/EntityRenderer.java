@@ -24,7 +24,7 @@ public class EntityRenderer {
 	public EntityRenderer(){
 		float[] vertices = new float[]{-.5f,.5f,0,.5f,.5f,0,.5f,-.5f,0,-.5f,-.5f,0};
 		float[] texCoords = new float[]{0,0,1,0,1,1,0,1};
-		int[] indices = new int[]{0,1,2,2,3,0};
+        int[] indices = new int[]{0,3,2,2,1,0};
 
 		model = new Model(vertices, texCoords, indices);
 

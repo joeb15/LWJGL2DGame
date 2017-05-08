@@ -2,6 +2,7 @@ package core;
 
 import entities.Entity;
 import guis.Gui;
+import guis.TestGui;
 import org.joml.Vector2f;
 import renderers.MasterRenderer;
 import textures.Animations;
@@ -39,7 +40,7 @@ public class Main {
         guis = new ArrayList<Gui>();
 
         entities.add(new Entity(new Vector2f(0, 0), new Vector2f(256, 256), Animations.getAnimation("./res/img.png", 1, 1)));
-        guis.add(new Gui("./res/sun.png", new Vector2f(0, HEIGHT-WIDTH/20), new Vector2f(WIDTH, WIDTH/20)));
+        guis.add(new TestGui());
 
         window.getCamera().setPos(entities.get(0).getPos());
 
@@ -50,7 +51,7 @@ public class Main {
 		Time.addTimer((f)->{System.out.println("TPS:"+(tps+(tps=0))+", FPS:"+(fps+(fps=0)));}, 1);
 
 		glEnable(GL_CULL_FACE);
-		glCullFace(GL_FRONT);
+		glCullFace(GL_BACK);
 		while(!window.shouldClose()){
 			glClear(GL_COLOR_BUFFER_BIT);
 			Time.update();
@@ -83,6 +84,8 @@ public class Main {
 		tps++;
         for(Entity e:entities)
             e.tick(delta);
+        for(Gui g:guis)
+            g.preClick(window.getCursorPos(), window.isCursorClicked());
 		glfwPollEvents();
 	}
 	

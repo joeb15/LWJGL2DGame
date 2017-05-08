@@ -1,17 +1,19 @@
 package core;
 
 import org.joml.Vector2f;
+import org.lwjgl.glfw.GLFWMouseButtonCallbackI;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 
 import static org.lwjgl.glfw.GLFW.*;
 
-public class Window {
+public class Window implements GLFWMouseButtonCallbackI {
 	
 	private long window;
 	private int width, height;
 	private String title;
 	private boolean fullscreen;
+	private boolean[] mousePressed = new boolean[8];
 	private Camera cam;
 
 	public Window(String title){
@@ -51,7 +53,7 @@ public class Window {
 		if(window == 0)
 			throw new IllegalStateException("Failed to create window!");
 
-
+        glfwSetMouseButtonCallback(window, this);
 
 		glfwSetWindowPos(window, vm.width()/2-width/2, vm.height()/2-height/2);
 
@@ -117,7 +119,7 @@ public class Window {
         double[] x = new double[1];
         double[] y = new double[1];
 	    glfwGetCursorPos(window, x, y);
-	    return new Vector2f((float)x[0], (float)y[0]);
+	    return new Vector2f((float)x[0], height- (float)y[0]);
     }
 
     public void setCursorPos(float x, float y){
@@ -128,4 +130,15 @@ public class Window {
         glfwSetCursorPos(window, pos.x, pos.y);
     }
 
+    public boolean isCursorClicked() {
+        return isCursorClicked(GLFW_MOUSE_BUTTON_LEFT);
+    }
+    public boolean isCursorClicked(int button) {
+        return mousePressed[button];
+    }
+
+    @Override
+    public void invoke(long l, int button, int action, int modifiers) {
+        mousePressed[button] = action == GLFW_PRESS;
+    }
 }

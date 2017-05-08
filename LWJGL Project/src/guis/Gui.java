@@ -7,7 +7,7 @@ import textures.Textures;
 /**
  * Created by joeba on 4/21/2017.
  */
-public class Gui {
+public abstract class Gui {
 
     private Vector2f pos, size;
     private Texture texture;
@@ -29,4 +29,13 @@ public class Gui {
     public Texture getTexture() {
         return texture;
     }
+
+    public abstract boolean onClick(Vector2f pos, boolean isClicked);
+
+    public boolean preClick(Vector2f pos, boolean isClicked){
+        if(pos.x>=this.pos.x && pos.y>=this.pos.y && pos.x<=this.pos.x+size.x && pos.y<=this.pos.y+size.y)
+            return onClick(pos, isClicked);
+        return false;
+    }
+
 }
